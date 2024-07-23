@@ -25,27 +25,24 @@ const AdminRestaurantes = () => {
   }
 
   return (
-    <>
-      <Link to={"/admin/restaurantes/novo"}>Novo restaurante</Link>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Nome</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
+    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell>Nome</TableCell>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {restaurantes.map((row) => (
+          <TableRow key={row.id}>
+            <TableCell component="th" scope="row">{row.nome}       </TableCell>
+            <TableCell component="th" scope="row"> <Link to={`/admin/restaurantes/${row.id}`}> [ Editar ] </Link>  </TableCell>
+            <TableCell component="th" scope="row"> <Button variant="outlined" color="error" onClick={() => deletarRestaurante(row.id)}>EXCLUIR </Button> </TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {restaurantes.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">{row.nome}       </TableCell>
-              <TableCell component="th" scope="row"> <Link to={`/admin/restaurantes/${row.id}`}> [ Editar ] </Link>  </TableCell>
-              <TableCell component="th" scope="row"> <Button variant="outlined" color="error" onClick={() => deletarRestaurante(row.id)}>EXCLUIR </Button> </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </>
+        ))}
+      </TableBody>
+    </Table>
   )
 }
 

@@ -1,9 +1,9 @@
 import { Box, Button, TextField, Typography } from "@mui/material"
-
 import { useEffect, useState } from "react";
 import IRestaurante from "../../../interfaces/IRestaurante";
 import { useNavigate, useParams } from "react-router-dom";
 import httpAdmin from "../../../http";
+
 
 const FormRestaurante = () => {
     const urlParam = useParams();
@@ -49,9 +49,9 @@ const FormRestaurante = () => {
     }
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", flexGrow: 1 }}>
             <Typography component="h1" variant="h6">Formulário de Restaurantes</Typography>
-            <Box component="form" onSubmit={enviarDados}>
+            <Box component="form" onSubmit={enviarDados} sx={{ width: '100%' }}>
                 <TextField required value={restauranteNome} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setRestauranteNome(event.target.value);
                 }} label="Nome restaurante" variant="outlined" fullWidth />
