@@ -1,15 +1,16 @@
-import { Button, TextField } from "@mui/material"
-import axios from "axios";
+import { Box, Button, TextField, Typography } from "@mui/material"
+
 import { useEffect, useState } from "react";
 import IRestaurante from "../../../interfaces/IRestaurante";
 import { useNavigate, useParams } from "react-router-dom";
+import httpAdmin from "../../../http";
 
 const FormRestaurante = () => {
     const urlParam = useParams();
 
     useEffect(() => {
         if (urlParam.id) {
-            axios.get<IRestaurante>(`http://localhost:8000/api/v2/restaurantes/${urlParam.id}/`)
+            httpAdmin.get<IRestaurante>(`restaurantes/${urlParam.id}/`)
                 .then((result) => setRestauranteNome(result.data.nome))
         }
     }, [urlParam])
@@ -22,13 +23,13 @@ const FormRestaurante = () => {
         event.preventDefault();
 
         if (urlParam.id) {
-            axios.patch<IRestaurante>(`http://localhost:8000/api/v2/restaurantes/${urlParam.id}/`, {
+            httpAdmin.patch<IRestaurante>(`restaurantes/${urlParam.id}/`, {
                 "nome": restauranteNome
             }).then(
                 () => console.log('Cadastro atualizado com sucesso!')
             )
         } else {
-            axios.post<IRestaurante>('http://localhost:8000/api/v2/restaurantes/', {
+            httpAdmin.post<IRestaurante>('restaurantes/', {
                 "nome": restauranteNome
             }).then(
                 () => console.log('Cadastro realizado com sucesso!')
@@ -39,7 +40,7 @@ const FormRestaurante = () => {
     const deletarRestaurante = () => {
         if (!urlParam.id) return;
 
-        axios.delete(`http://localhost:8000/api/v2/restaurantes/${urlParam.id}/`).then(
+        httpAdmin.delete(`restaurantes/${urlParam.id}/`).then(
             () => {
                 console.log('Cadastro deletado com sucesso!')
                 navigate("/admin/restaurantes")
@@ -48,14 +49,17 @@ const FormRestaurante = () => {
     }
 
     return (
-        <form onSubmit={enviarDados}>
-            <TextField value={restauranteNome} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setRestauranteNome(event.target.value);
-            }} label="Nome restaurante" variant="outlined" />
-            <Button type="submit" variant="text">Salvar</Button>
-            <br />
-            <Button variant="text" onClick={() => deletarRestaurante()} disabled={!urlParam.id}>Deletar restaurante</Button>
-        </form>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography component="h1" variant="h6">Formulário de Restaurantes</Typography>
+            <Box component="form" onSubmit={enviarDados}>
+                <TextField required value={restauranteNome} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setRestauranteNome(event.target.value);
+                }} label="Nome restaurante" variant="outlined" fullWidth />
+                <Button sx={{ marginTop: 1 }} type="submit" variant="outlined" fullWidth>Salvar</Button>
+                <br />
+                <Button sx={{ marginTop: 1 }} fullWidth variant="text" color="error" onClick={() => deletarRestaurante()} disabled={!urlParam.id}>Deletar restaurante</Button>
+            </Box>
+        </Box>
     )
 }
 

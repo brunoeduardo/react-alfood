@@ -1,30 +1,28 @@
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { useEffect, useState } from "react"
-import axios from "axios";
 import IRestaurante from "../../../interfaces/IRestaurante";
 import { Link } from "react-router-dom";
+import httpAdmin from "../../../http";
 
 const AdminRestaurantes = () => {
   const [restaurantes, setRestaurantes] = useState<IRestaurante[]>([]);
 
   useEffect(() => {
-    axios.get<IRestaurante[]>('http://localhost:8000/api/v2/restaurantes/')
+    httpAdmin.get<IRestaurante[]>('restaurantes/')
       .then(result => {
         setRestaurantes(result.data)
       })
       .catch(error => console.log(error))
   }, [])
 
-
   const deletarRestaurante = (id: number) => {
-    axios.delete(`http://localhost:8000/api/v2/restaurantes/${id}/`).then(
+    httpAdmin.delete(`estaurantes/${id}/`).then(
       () => {
         const listaRestaurantes = restaurantes.filter(restaurante => restaurante.id !== id)
         setRestaurantes(listaRestaurantes)
       }
     )
   }
-
 
   return (
     <>
