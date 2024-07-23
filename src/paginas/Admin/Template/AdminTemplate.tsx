@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography, Box, Link, Button, Paper, TextField } from "@mui/material";
+import { AppBar, Container, Toolbar, Typography, Box, Link, Button, Paper } from "@mui/material";
 import { Outlet, Link as RouterLink } from 'react-router-dom'
 
 const AdminTemplate = () => {
@@ -22,6 +22,11 @@ const AdminTemplate = () => {
                             <Link component={RouterLink} to="/admin/pratos/" >
                                 <Button sx={{ my: 2, color: 'white' }}>
                                     Pratos
+                                </Button>
+                            </Link>
+                            <Link component={RouterLink} to="/admin/pratos/novo" >
+                                <Button sx={{ my: 2, color: 'white' }}>
+                                    Novo Prato
                                 </Button>
                             </Link>
                         </Box>
