@@ -13,3 +13,4 @@ The goal was to implement a communication layer with an API.
 - `TypeScript`
 - `axios`
 - `mui material`
+- `REST API`
