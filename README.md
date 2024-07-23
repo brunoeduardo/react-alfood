@@ -1,33 +1,15 @@
-![Integrando seu projeto React com APIs](thumbnail.png)
+# Integrating a React project with APIs
 
-# Alfood
+The Alfood project(Alura course) was used as the base project. 
+It is a website that lists restaurants and menu items. The goal was to implement a communication layer with an API.
 
-O Alfood é um site que lista restaurantes e pratos do menu. 
-É um MVP que tá só começando e ainda tem muitas funcionalidades novas para serem desenvolvidas.
+## Project features
+The goal was to implement a communication layer with an API.
 
-<img src="screencapture.png" alt="Imagem do Alfood" width="50%">
-
-
-## 🔨 Funcionalidades do projeto
-
-O Alfood começa com uma listagem estática de seu conteúdo e é esse o problema que queremos resolver.
-No decorrer do curso, vamos implementar toda a camada de comunicação com a API.
-
-## ✔️ Técnicas e tecnologias utilizadas
-
-Se liga nessa lista de tudo que usaremos nesse treinamento:
+## Techniques and technologies used
 
 - `React`
 - `React Hooks`
 - `TypeScript`
 - `axios`
-
-## 🛠️ Abrir e rodar o projeto
-
-Para abrir e rodar o projeto, execute npm i para instalar as dependências e npm start para inicar o projeto.
-
-Depois, acesse <a href="http://localhost:3000/">http://localhost:3000/</a> no seu navegador.
-
-## 📚 Mais informações do curso
-
-Busque na plataforma da Alura o curso **Integrando seu projeto React com APIs** publicado na Escola Frontend.
+- `mui material`
